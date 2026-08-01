@@ -1,4 +1,4 @@
-﻿# Luggage For All
+# Luggage For All
 
 Luggage For All makes luggage reusable during a run by automatically refilling it after a configurable cooldown.
 
