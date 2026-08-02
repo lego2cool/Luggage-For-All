@@ -15,9 +15,17 @@ public static class LuggagePatches
     [HarmonyPatch("Awake")]
     public static void AddLuggageTimer(Luggage __instance)
     {
-        if (__instance.GetComponent<LuggageTimer>() == null)
+        string[] luggageTypes = Plugin.GetLuggageTypes();
+        foreach (var luggageType in luggageTypes)
         {
-            __instance.gameObject.AddComponent<LuggageTimer>();
+            if (__instance.name.Contains(luggageType))
+            {
+                if (__instance.GetComponent<LuggageTimer>() == null)
+                {
+                    __instance.gameObject.AddComponent<LuggageTimer>();
+                }
+                return;
+            }
         }
     }
 

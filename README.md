@@ -20,6 +20,18 @@ Configuration is available in the BepInEx config file after the mod has been lau
 | `Refill Duration` | `60` | Number of seconds before opened luggage refills. |
 | `Timer Font Size` | `5` | Size of the countdown text displayed above luggage. |
 | `Show Timer` | `true` | Whether to display the countdown timer. |
+| `Max Reopens` | `-1` | Maximum number of times luggage can refill. Set to `-1` for unlimited refills. |
+
+### Luggage Types
+
+These settings are in the `Luggages` section of the config file. Disable a type to prevent that luggage from refilling.
+
+| Setting | Default | Description |
+| --- | ---: | --- |
+| `Luggage Small` | `true` | Whether small luggage should refill. |
+| `Luggage Big` | `true` | Whether big luggage should refill. |
+| `Luggage Epic` | `true` | Whether explorer luggage should refill. |
+| `Luggage Ancient` | `true` | Whether ancient luggage should refill. |
 
 ## Installation
 

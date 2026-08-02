@@ -5,6 +5,7 @@ using TMPro;
 using System.Linq;
 using System.Collections;
 using Luggage_For_All;
+using System.Collections.Generic;
 
 // Displays a countdown above luggage and refills it when the timer expires.
 public class LuggageTimer : MonoBehaviourPun
@@ -14,6 +15,9 @@ public class LuggageTimer : MonoBehaviourPun
 
     // How long the luggage stays open before it refills.
     public float duration = 0f;
+
+    public int reopenCount = 0;
+    public int maxReopens = Plugin.MaxReopens.Value;
 
     // The text object shown above the luggage.
     private TextMeshPro text = null!;
@@ -50,9 +54,18 @@ public class LuggageTimer : MonoBehaviourPun
     [PunRPC]
     public void RPC_SetOpenedTime(double time, float SetTime)
     {
-        text.gameObject.SetActive(Plugin.ShowTimer.Value);
-        lastOpenedTime = time;
-        duration = SetTime;
+        string[] luggageTypes = Plugin.GetLuggageTypes();
+        foreach (var luggageType in luggageTypes)
+        {
+            if (name.Contains(luggageType))
+            {
+                text.gameObject.SetActive(Plugin.ShowTimer.Value);
+                lastOpenedTime = time;
+                duration = SetTime;
+                break;
+            }
+        }
+        
     }
 
     // Updates the countdown each frame and refills luggage once time runs out.
@@ -74,19 +87,21 @@ public class LuggageTimer : MonoBehaviourPun
                 Quaternion luggagerot = transform.rotation;
 
                 string spawnName = name;
-                string[] luggageTypes = { "LuggageSmall", "LuggageBig", "LuggageEpic", "LuggageAncient" };
+                string[] luggageTypes = Plugin.GetLuggageTypes();
 
                 foreach (var luggageType in luggageTypes)
                 {
-                    if (spawnName.Contains(luggageType, System.StringComparison.OrdinalIgnoreCase))
+                    if (spawnName.Contains(luggageType, System.StringComparison.OrdinalIgnoreCase) && (maxReopens < 0 || reopenCount < maxReopens))
                     {
                         spawnName = luggageType;
+
+                        GameObject newLuggage = PhotonNetwork.Instantiate($"0_Items/{spawnName}", luggagepos, luggagerot);
+                        newLuggage.GetComponent<LuggageTimer>().reopenCount = reopenCount + 1;
+                        PhotonNetwork.Destroy(base.gameObject);
+
                         break;
                     }
                 }
-
-                PhotonNetwork.Instantiate($"0_Items/{spawnName}", luggagepos, luggagerot);
-                PhotonNetwork.Destroy(base.gameObject);
 
                 //luggage.photonView.RPC("RefillLuggage", RpcTarget.All);
                 lastOpenedTime = 0; // reset
