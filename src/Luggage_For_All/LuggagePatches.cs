@@ -15,19 +15,13 @@ public static class LuggagePatches
     [HarmonyPatch("Awake")]
     public static void AddLuggageTimer(Luggage __instance)
     {
-        string[] luggageTypes = Plugin.GetLuggageTypes();
-        foreach (var luggageType in luggageTypes)
+        if (__instance.GetComponent<LuggageTimer>() == null)
         {
-            if (__instance.name.Contains(luggageType))
-            {
-                if (__instance.GetComponent<LuggageTimer>() == null)
-                {
-                    __instance.gameObject.AddComponent<LuggageTimer>();
-                }
-                return;
-            }
+            __instance.gameObject.AddComponent<LuggageTimer>();
         }
+        return;   
     }
+    
 
     // When luggage is opened, tell all clients to start the shared countdown timer.
     [HarmonyPostfix]

@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.2.1] - 2026-8-02
+
+* Fixed Errors when opening a disabled luggage
+
 ## \[1.2.0] - 2026-8-02
 
 * Added a configurable maximum number of luggage refills, with `-1` allowing unlimited refills.
