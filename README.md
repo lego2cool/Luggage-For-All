@@ -32,6 +32,7 @@ These settings are in the `Luggages` section of the config file. Disable a type 
 | `Luggage Big` | `true` | Whether big luggage should refill. |
 | `Luggage Epic` | `true` | Whether explorer luggage should refill. |
 | `Luggage Ancient` | `true` | Whether ancient luggage should refill. |
+| `Luggage Clown` | `true` | Whether clown luggage should refill. |
 
 ## Installation
 

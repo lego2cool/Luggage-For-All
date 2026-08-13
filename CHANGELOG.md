@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.3.0] - 2026-8-13
+
+* Added compatibility with Clown Luggages
+
 ## \[1.2.1] - 2026-8-02
 
 * Fixed Errors when opening a disabled luggage

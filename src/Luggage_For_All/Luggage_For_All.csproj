@@ -8,7 +8,7 @@
     <!-- This is the display name of your mod. Example: BepInEx Template -->
     <AssemblyTitle>Luggage_For_All</AssemblyTitle>
     <!-- This is the version number of your mod. -->
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <!--

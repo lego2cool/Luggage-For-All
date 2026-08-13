@@ -22,6 +22,7 @@ public partial class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> LuggageBig = null!;
     internal static ConfigEntry<bool> LuggageEpic = null!;
     internal static ConfigEntry<bool> LuggageAncient = null!;
+    internal static ConfigEntry<bool> LuggageClown = null!;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public partial class Plugin : BaseUnityPlugin
         LuggageBig = Config.Bind("Luggages", "Luggage Big", true, "Whether the big luggage should refill.");
         LuggageEpic = Config.Bind("Luggages", "Luggage Epic", true, "Whether the explorer luggage should refill.");
         LuggageAncient = Config.Bind("Luggages", "Luggage Ancient", true, "Whether the ancient luggage should refill.");
+        LuggageClown = Config.Bind("Luggages", "Luggage Clown", true, "Whether the clown luggage should refill.");
 
         Log.LogInfo($"Plugin {Name} is loaded!");
     }
@@ -50,6 +52,7 @@ public partial class Plugin : BaseUnityPlugin
         if (LuggageBig.Value) types.Add("LuggageBig");
         if (LuggageEpic.Value) types.Add("LuggageEpic");
         if (LuggageAncient.Value) types.Add("LuggageAncient");
+        if (LuggageClown.Value) types.Add("LuggageClown");
         return types.ToArray();
     }
 } 
